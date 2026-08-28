@@ -13,11 +13,19 @@ const Step = ({ selected = false }: StepProps) => {
     )
   }
   return (
-    <View style={styles.unselected} />
+    <View style={styles.outUnselected}>
+      <View style={styles.unselected} />
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
+  outUnselected: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 25,
+    height: 25,
+  },
   unselected: {
     borderRadius: '100%',
     width: 12,

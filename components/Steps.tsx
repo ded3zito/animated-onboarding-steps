@@ -19,7 +19,7 @@ const StepsComponent = ({steps, currentStep}: Props) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: '35%',
+    width: '30%',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
