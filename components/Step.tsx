@@ -1,50 +1,49 @@
 import { View, StyleSheet } from 'react-native';
+import Animated, {
+  interpolateColor,
+  useAnimatedStyle,
+  type SharedValue,
+} from 'react-native-reanimated';
+import {
+  DOT_ACTIVE,
+  DOT_INACTIVE,
+  DOT_SIZE,
+  STEP_SIZE,
+} from './stepsTheme';
 
 type StepProps = {
-  selected?: boolean;
+  index: number;
+  /** Animated position of the track's leading edge, in step units. */
+  progress: SharedValue<number>;
 }
 
-const Step = ({ selected = false }: StepProps) => {
-  if (selected) {
-    return (
-      <View style={styles.outSelected}>
-        <View style={styles.selected} />
-      </View>
-    )
-  }
+const Step = ({ index, progress }: StepProps) => {
+  const dotStyle = useAnimatedStyle(() => ({
+    backgroundColor: interpolateColor(
+      progress.value,
+      [index - 0.65, index - 0.25],
+      [DOT_INACTIVE, DOT_ACTIVE],
+    ),
+  }));
+
   return (
-    <View style={styles.outUnselected}>
-      <View style={styles.unselected} />
+    <View style={styles.slot}>
+      <Animated.View style={[styles.dot, dotStyle]} />
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  outUnselected: {
+  slot: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: 25,
-    height: 25,
+    width: STEP_SIZE,
+    height: STEP_SIZE,
   },
-  unselected: {
-    borderRadius: '100%',
-    width: 12,
-    height: 12,
-    backgroundColor: '#696969'
-  },
-  outSelected: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 25,
-    height: 25,
-    backgroundColor: '#7ADAA5',
-    borderRadius: '100%',
-  },
-  selected: {
-    borderRadius: '100%',
-    width: 12,
-    height: 12,
-    backgroundColor: '#fff',
+  dot: {
+    borderRadius: DOT_SIZE / 2,
+    width: DOT_SIZE,
+    height: DOT_SIZE,
   },
 })
 
