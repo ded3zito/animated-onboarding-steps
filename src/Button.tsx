@@ -6,24 +6,38 @@ type ButtonProps = {
   label?: string;
   onPress: () => void;
   variant?: ButtonVariant;
+  /** Overrides the variant's background. */
+  backgroundColor?: string;
+  /** Overrides the variant's label colour. */
+  labelColor?: string;
   style?: StyleProp<ViewStyle>;
-}
+};
 
-const Button = ({ label, onPress, variant = 'primary', style }: ButtonProps) => {
+const Button = ({
+  label,
+  onPress,
+  variant = 'primary',
+  backgroundColor,
+  labelColor,
+  style,
+}: ButtonProps) => {
   return (
     <Pressable
       onPress={onPress}
       style={({ pressed }) => [
         styles.container,
         styles[variant],
+        backgroundColor ? { backgroundColor } : null,
         style,
         pressed && styles.pressed,
       ]}
     >
-      <Text style={[styles.text, styles[`${variant}Text`]]}>{label}</Text>
+      <Text style={[styles.text, styles[`${variant}Text`], labelColor ? { color: labelColor } : null]}>
+        {label}
+      </Text>
     </Pressable>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -54,6 +68,5 @@ const styles = StyleSheet.create({
     color: '#1C1C1E',
   },
 });
-
 
 export default Button;
