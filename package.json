@@ -1,6 +1,6 @@
 {
   "name": "react-native-onboarding-steps",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "An animated, fully customizable onboarding flow for React Native and Expo, with a step indicator that grows into a single connected track.",
   "main": "./lib/commonjs/index.js",
   "module": "./lib/module/index.js",

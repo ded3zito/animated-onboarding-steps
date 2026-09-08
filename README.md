@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="docs/demo.gif" alt="An onboarding flow where the step indicator's green track grows to connect each completed step" width="280">
+<img src="https://raw.githubusercontent.com/ded3zito/react-native-onboarding-steps/main/docs/demo.gif" alt="An onboarding flow where the step indicator's green track grows to connect each completed step" width="280">
 
 # react-native-onboarding-steps
 
