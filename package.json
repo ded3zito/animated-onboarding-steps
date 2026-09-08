@@ -49,12 +49,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ded3zito/animated-onboarding-steps.git"
+    "url": "git+https://github.com/ded3zito/react-native-onboarding-steps.git"
   },
   "bugs": {
-    "url": "https://github.com/ded3zito/animated-onboarding-steps/issues"
+    "url": "https://github.com/ded3zito/react-native-onboarding-steps/issues"
   },
-  "homepage": "https://github.com/ded3zito/animated-onboarding-steps#readme",
+  "homepage": "https://github.com/ded3zito/react-native-onboarding-steps#readme",
   "author": "Andrew Azevedo",
   "license": "MIT",
   "peerDependencies": {
