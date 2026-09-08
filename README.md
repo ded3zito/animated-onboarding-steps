@@ -2,7 +2,7 @@
 
 <img src="docs/demo.gif" alt="An onboarding flow where the step indicator's green track grows to connect each completed step" width="280">
 
-# animated-onboarding-steps
+# react-native-onboarding-steps
 
 A drop-in onboarding flow for React Native and Expo whose step indicator animates as a single connected track — the pill grows to link every completed step instead of lighting up dots one by one — with the back and continue buttons, labels, colours and spring all customizable from props.
 
@@ -22,15 +22,15 @@ A drop-in onboarding flow for React Native and Expo whose step indicator animate
 ## Installation
 
 ```sh
-npm install @ded3zito/animated-onboarding-steps
+npm install react-native-onboarding-steps
 ```
 
 ```sh
-yarn add @ded3zito/animated-onboarding-steps
+yarn add react-native-onboarding-steps
 ```
 
 ```sh
-pnpm add @ded3zito/animated-onboarding-steps
+pnpm add react-native-onboarding-steps
 ```
 
 This package expects `react-native-reanimated` v4 (and its `react-native-worklets` companion) to be installed in your app. On Expo:
@@ -43,7 +43,7 @@ npx expo install react-native-reanimated react-native-worklets
 
 ```tsx
 import { StyleSheet, Text, View } from 'react-native';
-import { Onboarding, type OnboardingStep } from '@ded3zito/animated-onboarding-steps';
+import { Onboarding, type OnboardingStep } from 'react-native-onboarding-steps';
 
 const Slide = ({ title }: { title: string }) => (
   <View style={styles.slide}>
@@ -183,11 +183,12 @@ along with `defaultStepsTheme`, `resolveStepsTheme` and the `trackWidth` worklet
 
 ```sh
 pnpm install
-pnpm ios     # or: pnpm android
+pnpm example ios     # or: pnpm example android
 ```
 
-The example lives in [`example/App.tsx`](example/App.tsx) and consumes the
-library straight from `src/`.
+The example is a standalone Expo app in [`example/`](example/App.tsx). It
+consumes the library through a workspace link, so edits to `src/` show up in
+the running app without a rebuild.
 
 ## License
 

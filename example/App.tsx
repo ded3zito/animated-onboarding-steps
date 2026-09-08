@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Onboarding, type OnboardingStep } from '../src';
+import { Onboarding, type OnboardingStep } from 'react-native-onboarding-steps';
 
 const Slide = ({ title, body }: { title: string; body: string }) => (
   <View style={styles.slide}>
