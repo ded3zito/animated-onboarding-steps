@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { Onboarding, type OnboardingStep } from 'react-native-onboarding-steps';
 
 const Slide = ({ title, body }: { title: string; body: string }) => (
@@ -28,15 +28,17 @@ const steps: OnboardingStep[] = [
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
-      <Onboarding
-        steps={steps}
-        onComplete={() => console.log('[example] onboarding complete')}
-        onStepChange={(index) => console.log('[example] step ->', index)}
-        onBack={(index) => console.log('[example] back ->', index)}
-      />
-      <StatusBar style="auto" />
-    </SafeAreaView>
+    <SafeAreaProvider>
+      <SafeAreaView style={styles.container}>
+        <Onboarding
+          steps={steps}
+          onComplete={() => console.log('[example] onboarding complete')}
+          onStepChange={(index) => console.log('[example] step ->', index)}
+          onBack={(index) => console.log('[example] back ->', index)}
+        />
+        <StatusBar style="auto" />
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 
@@ -44,7 +46,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    paddingBottom: '10%',
+    // A plain number, not a percentage: SafeAreaView rewrites this edge in
+    // points, so '10%' was silently becoming 10pt. The safe area inset is
+    // added on top of this.
+    paddingBottom: 16,
   },
   slide: {
     flex: 1,
