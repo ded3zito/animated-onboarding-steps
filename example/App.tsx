@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { Onboarding, type OnboardingStep } from 'react-native-onboarding-steps';
 
 const Slide = ({ title, body }: { title: string; body: string }) => (
@@ -28,15 +28,17 @@ const steps: OnboardingStep[] = [
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
-      <Onboarding
-        steps={steps}
-        onComplete={() => console.log('[example] onboarding complete')}
-        onStepChange={(index) => console.log('[example] step ->', index)}
-        onBack={(index) => console.log('[example] back ->', index)}
-      />
-      <StatusBar style="auto" />
-    </SafeAreaView>
+    <SafeAreaProvider>
+      <SafeAreaView style={styles.container}>
+        <Onboarding
+          steps={steps}
+          onComplete={() => console.log('[example] onboarding complete')}
+          onStepChange={(index) => console.log('[example] step ->', index)}
+          onBack={(index) => console.log('[example] back ->', index)}
+        />
+        <StatusBar style="auto" />
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 
@@ -44,7 +46,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    paddingBottom: '10%',
   },
   slide: {
     flex: 1,
@@ -63,5 +64,8 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     textAlign: 'center',
     color: '#696969',
+    // Reserve two lines. A one-line body then occupies the same height as a
+    // two-line one, so the slide does not shift as the step changes.
+    minHeight: 44,
   },
 });
