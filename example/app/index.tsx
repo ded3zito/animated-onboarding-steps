@@ -1,6 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
+import { useState } from 'react';
+import { Redirect } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Onboarding, type OnboardingStep } from 'react-native-onboarding-steps';
 
 const Slide = ({ title, body }: { title: string; body: string }) => (
@@ -26,19 +27,23 @@ const steps: OnboardingStep[] = [
   },
 ];
 
-export default function App() {
+export default function OnboardingScreen() {
+  // Kept in memory only: a reload starts the flow over.
+  const [isOnboarded, setIsOnboarded] = useState(false);
+
+  if (isOnboarded) {
+    return <Redirect href="/home" />;
+  }
+
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={styles.container}>
-        <Onboarding
-          steps={steps}
-          onComplete={() => console.log('[example] onboarding complete')}
-          onStepChange={(index) => console.log('[example] step ->', index)}
-          onBack={(index) => console.log('[example] back ->', index)}
-        />
-        <StatusBar style="auto" />
-      </SafeAreaView>
-    </SafeAreaProvider>
+    <SafeAreaView style={styles.container}>
+      <Onboarding
+        steps={steps}
+        onComplete={() => setIsOnboarded(true)}
+        onStepChange={(index) => console.log('[example] step ->', index)}
+        onBack={(index) => console.log('[example] back ->', index)}
+      />
+    </SafeAreaView>
   );
 }
 
