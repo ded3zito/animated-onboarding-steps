@@ -46,10 +46,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    // A plain number, not a percentage: SafeAreaView rewrites this edge in
-    // points, so '10%' was silently becoming 10pt. The safe area inset is
-    // added on top of this.
-    paddingBottom: 16,
   },
   slide: {
     flex: 1,
@@ -68,5 +64,8 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     textAlign: 'center',
     color: '#696969',
+    // Reserve two lines. A one-line body then occupies the same height as a
+    // two-line one, so the slide does not shift as the step changes.
+    minHeight: 44,
   },
 });
